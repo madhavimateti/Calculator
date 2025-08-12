@@ -1,0 +1,358 @@
+/* Vibe Enhancement: CSS Custom Properties for easy theming */
+:root {
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --color-bg-gradient-start: #00AAFF;
+    --color-bg-gradient-end: #00FF6C;
+    --color-btn-number-bg: rgba(255, 255, 255, .75);
+    --color-btn-number-hover: rgba(255, 255, 255, .9);
+    --color-btn-operator-bg: #f79231;
+    --color-btn-operator-hover: #f8a04a;
+    --color-btn-function-bg: #a5a5a5;
+    --color-btn-function-hover: #b9b9b9;
+    --color-btn-equals-bg: #4CAF50;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, var(--color-bg-gradient-start), var(--color-bg-gradient-end));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* A wrapper for the main calculator and its AI input */
+.calculator-container {
+    /* This can be empty, it's just for semantic grouping */
+}
+
+.ai-container {
+    margin-bottom: 10px;
+}
+
+.ai-input {
+    width: 280px; /* Match new calculator width */
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 2px solid #333;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    /* All buttons fit in 7 rows */
+    grid-template-rows: minmax(70px, auto) repeat(7, 50px);
+    border: 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: var(--color-btn-number-bg);
+    transition: background-color 0.15s;
+}
+
+.calculator-grid > button:hover {
+    background-color: var(--color-btn-number-hover);
+}
+
+.calculator-grid > button:active {
+    animation: button-press 0.1s ease-out;
+}
+
+/* Vibe Enhancement: Tactile feedback animation */
+@keyframes button-press {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+button[data-operator] {
+    background-color: var(--color-btn-operator-bg);
+    color: white;
+}
+
+button[data-operator]:hover {
+    background-color: var(--color-btn-operator-hover);
+}
+
+button[data-all-clear],
+button[data-delete],
+button[data-parenthesis],
+button[data-function],
+button[data-constant] {
+    background-color: var(--color-btn-function-bg);
+}
+
+button[data-all-clear]:hover,
+button[data-delete]:hover,
+button[data-parenthesis]:hover,
+button[data-function]:hover,
+button[data-constant]:hover {
+    background-color: var(--color-btn-function-hover);
+}
+
+button[data-equals] {
+    background-color: var(--color-btn-equals-bg);
+    color: white;
+}
+
+/* Vibe Enhancement: Interest Calculator Styles */
+.interest-container {
+    width: 280px; /* Match calculator width for grid alignment */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.interest-container h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 10px;
+}
+
+.interest-controls input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.interest-controls label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.panel-action-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-btn-equals-bg);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.panel-action-button:hover {
+    background-color: #5cb85c;
+}
+
+/* Vibe Enhancement: Currency Converter Styles */
+.converter-container {
+    width: 280px; /* Match calculator width for grid alignment */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.converter-container h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 10px;
+}
+
+.converter-controls input, .converter-controls select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.select-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+#conversion-result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+}
+
+#interest-result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+}
+
+/* Vibe Enhancement: History Panel Styles */
+.history-container {
+    width: 280px; /* Match calculator width for grid alignment */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-container h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 10px;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    font-size: 1rem;
+}
+
+#history-list li {
+    padding: 8px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+#history-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Vibe Enhancement: Custom Scrollbar for History */
+#history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#history-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+#history-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#history-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* --- Responsiveness --- */
+
+/* For tablets and smaller desktops where items start to wrap */
+@media (max-width: 1450px) {
+    /* The new grid layout is compact enough not to need specific tablet overrides. */
+    /* Mobile styles will take over at 768px. */
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start; /* Align to top on mobile */
+    }
+
+    .app-container {
+        flex-direction: column; /* Stack everything vertically */
+        align-items: center; /* Center the stacked items */
+        padding: 10px;
+    }
+
+    .calculator-grid {
+        width: 95vw;
+        max-width: 400px;
+        grid-template-columns: repeat(4, 1fr); /* Use fractional units for columns */
+        grid-template-rows: minmax(80px, auto) repeat(7, 60px);
+    }
+
+    .ai-container,
+    .interest-container,
+    .converter-container,
+    .history-container {
+        width: 95vw;
+        max-width: 400px;
+        height: auto; /* Let content define height */
+        min-height: initial; /* Reset min-height from desktop view */
+    }
+
+    .ai-input { width: 100%; }
+}
